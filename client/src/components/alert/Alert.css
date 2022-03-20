@@ -1,0 +1,27 @@
+.alert{
+    padding: 1rem 0.5rem;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+}
+.alert__wrapper{
+    /* min-height: 100vh; */
+    /* padding:0 1rem; */
+}
+
+.alert a{
+    color: rgb(109, 0, 136);
+    text-decoration: underline;
+}
+
+.alert-info{
+    background-color: #b0b0f0;
+    color: #474ea5;
+}
+
+.alert-danger{
+    background-color: #ffe0e0e0;
+    color: #a02020;
+}

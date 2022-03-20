@@ -1,0 +1,46 @@
+@import './utilities.css';
+
+:root{
+   --primary : #222f3e;
+   --text-primary:#1b1f22 ;
+   --grey: #aaa69d;
+   --pure : #fff;
+   --dark : #000;
+   --light-grey: #dcdde1;
+}
+
+body{
+   font-family: 'Open Sans' , sans-serif;
+}
+
+/*
+================
+Home Styles
+================
+*/
+.products__container{
+   display: grid;
+   grid-template-columns: repeat(4 , 1fr);
+   gap: 3rem ;
+}
+
+@media (max-width: 1050px){
+   .products__container{
+      grid-template-columns: repeat(3 , 1fr);
+   }
+}
+@media (max-width: 800px){
+   .products__container{
+      grid-template-columns: repeat(2 , 1fr);
+   }
+}
+@media (max-width: 500px){
+   .products__container{
+      grid-template-columns: repeat(1 , 1fr);
+      place-items: center;
+   }
+   .product__card{
+      width: 90%;
+   }
+}
+@media (max-width: 1050px){}

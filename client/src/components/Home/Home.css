@@ -1,0 +1,18 @@
+.product__card{
+   border: 1px solid var(--light-grey);
+   padding: 1rem;
+   border-radius: 5px;
+   transition: 0.2s all ease-in-out;
+}
+.product__card:hover{
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+   transform: translateY(-5px);
+}
+.product__info > .product__name{
+   height: 45px;
+}
+.product__img > a > img {
+   height: 200px;
+   object-fit: cover;
+   border-radius: 5px;
+}
