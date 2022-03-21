@@ -10,8 +10,10 @@ const cors = require('cors');
 connectDB();
 
 app.use(cors());
+app.use(express.json());
 // ROUTES
 app.use('/api' , require('./routes/productRoutes'));
+app.use('/api/user' , require('./routes/authRoutes'));
 
 // ERROR HANDLER
 app.use(globalErrorHandler);

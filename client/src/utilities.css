@@ -99,6 +99,9 @@ img{
 .font-sm{
    font-size: 14px;
 }
+.font-18{
+   font-size: 18px;
+}
 .font-lg{
    font-size: 2rem;
 }
@@ -367,4 +370,8 @@ button{
    background-color: transparent;
    border-color: black;
    color: #000;
+}
+
+.pointer{
+   cursor: pointer;
 }

@@ -43,4 +43,64 @@ Home Styles
       width: 90%;
    }
 }
-@media (max-width: 1050px){}
+
+select{
+   padding: .5rem 1rem;
+}
+
+/* 
+================
+CART
+================
+*/
+.cartItem__left{
+   flex-basis: 70%;
+}
+.cartItem__right{
+   flex-basis: 25%;
+   border: 1px solid var(--light-grey);
+   padding: 1rem;
+   margin-left: 3rem;
+   height: fit-content;
+}
+.cartItem__right > h3{
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   text-align: center;
+   border-bottom: 1px solid rgb(231, 231, 231);
+   padding-bottom: 1rem;
+}
+.cartItem__right > ul > li {
+   display: flex ;
+   justify-content : space-between;
+   align-items: center;
+   border-bottom: 1px solid rgb(231, 231, 231);
+   padding: 1rem 0;
+   font-size: 1.4rem;
+}
+
+@media(max-width: 900px){
+   .cartItem__container{
+      flex-direction: column;
+   }
+   .cartItem__left{
+      flex-basis: 100%;
+      flex-wrap: wrap;
+   }
+   .cartItem__right{
+      margin-top: 3rem;
+      flex-basis: 30%;
+      text-align: right;
+      margin-left: 0;
+   }
+}
+
+input::placeholder{
+   font-size: 1.5rem;
+}
+
+@media (max-width: 500px){
+   .login__container{
+      width: 100%;
+   }
+}

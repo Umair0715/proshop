@@ -1,9 +1,18 @@
 import './ProductDetail.css';
 import { useNavigate } from 'react-router-dom';
 import Rating from './../Rating'
+import { useState } from 'react';
+
 
 const ProductDetail = ({ product }) => {
+
+   const [ qty , setQty] = useState(1);
    const navigate = useNavigate();
+
+   const addToCartHandler = id => {
+      navigate(`/cart/${id}?qty=${qty}`)
+   }
+
    return (
       <div> 
          <button className='btn btn-back' onClick={() => navigate(-1)} >
@@ -40,10 +49,29 @@ const ProductDetail = ({ product }) => {
                         {product.countInStock > 0 ? 'in Stock' : 'Out Of Stock'}
                      </span>
                   </li>
-                 
+                  {
+                     product.countInStock > 0 && 
+                     <li>
+                        <strong>Qty</strong>
+                        <select value={qty} onChange={(e) => setQty(e.target.value)} >
+                           {
+                              
+                              [...Array(product.countInStock).keys()].map( x => (
+                              <option key={x + 1} value={x+1}>{x+1}</option>
+                              ))
+                           }
+                        </select>
+                     </li>
+                  }
                </ul>
                <div className='productDetails__checkoutBnt'>
-                  <button disabled={product.countInStock === 0 ? true : false } className='btn btn-primary'>Add To Cart</button>
+                  <button 
+                  disabled={product.countInStock === 0} 
+                  className='btn btn-primary'
+                  onClick={ () => addToCartHandler(product._id)}
+                  >
+                     Add To Cart
+                  </button>
                </div>
             </div>
          </div>

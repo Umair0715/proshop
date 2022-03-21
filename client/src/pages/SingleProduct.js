@@ -13,7 +13,7 @@ const SingleProduct = () => {
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch(getSingleProduct(id));
-   }, [dispatch])
+   }, [dispatch , id])
 
    return (
       loading ? <Loader />

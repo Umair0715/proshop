@@ -1,0 +1,15 @@
+.profile__left{
+   width: 20%;
+}
+.profile__right{
+   width: 80%;
+}
+
+@media (max-width:1000px){
+   .profile__left{
+      width: 30%;
+   }
+   .profile__right{
+      width: 70%;
+   }
+}
