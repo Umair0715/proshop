@@ -63,6 +63,9 @@ img{
 .m-auto{
    margin: 0 auto;
 }
+.pointer{
+   cursor: pointer;
+}
 .text-center{
    text-align: center;
 }

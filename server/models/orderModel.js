@@ -13,26 +13,14 @@ const orderSchema = mongoose.Schema({
             required : true ,
             ref : 'Product'
          },
-         name : {
-            type : String ,
-            required : true 
-         },
-         image : {
-            type : String ,
-            required : true 
-         },
-         price : {
-            type : Number ,
-            required : true 
-         },
          qty : {
             type : Number ,
             required : true 
          },
       }
    ] ,
-   shippingAdress : {
-      adress : { 
+   shippingInfo : {
+      address : { 
          type : String ,
          required : true 
       },
@@ -59,18 +47,22 @@ const orderSchema = mongoose.Schema({
       update_time : { type : String  } ,
       email_adress : { type : String  }
    },
+   itemsPrice : {
+      type : Number , 
+      required: true , 
+   },
    taxPrice : { 
-      type : String , 
+      type : Number , 
       required : true ,
       default : 0.00
    },
    shippingPrice : { 
-      type : String , 
+      type : Number , 
       required : true ,
       default : 0.00
    },
    totalPrice : { 
-      type : String , 
+      type : Number , 
       required : true ,
       default : 0.00
    },

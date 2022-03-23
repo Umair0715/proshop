@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch , useSelector  } from 'react-redux';
-import { useParams, useSearchParams , Link  } from 'react-router-dom';
+import { useParams, useSearchParams , Link , useNavigate } from 'react-router-dom';
 import { addToCart, removeCartItem } from './../actions/cartActions';
 import Alert from './../components/alert/Alert';
 
@@ -10,7 +10,7 @@ const Cart = () => {
    const [searchParams] = useSearchParams();
    const qty = searchParams.get('qty');
    const { cartItems } = useSelector(state => state.cart);
-
+   const navigate = useNavigate();
  
    const removeFromCart = id => {
       dispatch(removeCartItem(id))
@@ -79,7 +79,11 @@ const Cart = () => {
                      </li>
                   </ul>
                   <div className='proceedToCheckout py-10 text-center'>
-                     <button className='btn btn-primary'>Proceed To Checkout</button>
+                     <button 
+                     onClick={() => navigate('/order/shipping')}
+                     className='btn btn-primary'>
+                        Proceed To Checkout
+                     </button>
                   </div>
                </div>
             </div>

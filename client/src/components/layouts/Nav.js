@@ -26,7 +26,7 @@ const Nav = () => {
                   userInfo && userInfo.name ? 
                   <>
                      <div className='ml-20'>
-                        <Link className='font-sm' to='/profile'>
+                        <Link className='font-sm' to='/profile' title='Profile'>
                            <i className='fas fa-user'></i>
                            <span className='text-uppercase'>{userInfo.name}</span>      
                         </Link>   
@@ -49,6 +49,21 @@ const Nav = () => {
                   </div> 
 
                } 
+               {
+                  userInfo && userInfo.isAdmin && 
+                  <div className="dropdown ml-20 text-white font-sm pointer">
+                     <div className='flex items-center'>
+                        <span className="dropbtn">ADMIN</span>
+                        <i className="fa-solid fa-caret-down ml-5"></i>
+                     </div>
+                     <div className="dropdown-content">
+                        <Link to='/admin/usersList'>
+                           Users
+                        </Link>
+                        <Link to='/admin/products'>Products</Link>
+                     </div>
+                  </div>
+               }
                       
             </div>   
          </div> 

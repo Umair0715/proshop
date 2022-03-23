@@ -11,9 +11,17 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
+
 // ROUTES
 app.use('/api' , require('./routes/productRoutes'));
 app.use('/api/user' , require('./routes/authRoutes'));
+app.use('/api/order' , require('./routes/orderRoutes'));
+
+app.use('/api/paypal/config' , (req ,res) => {
+   res.json({
+      clientId : process.env.PAYPAL_CLIENT_ID
+   })
+})
 
 // ERROR HANDLER
 app.use(globalErrorHandler);

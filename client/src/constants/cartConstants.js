@@ -1,2 +1,5 @@
 export const ADD_CART_ITEM = 'ADD_CART_ITEM';
 export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
+export const ADD_SHIPPING_INFO = 'ADD_SHIPPING_INFO';
+export const ADD_PAYMENT_METHOD = 'ADD_PAYMENT_METHOD';
+export const RESET_CART = 'RESET_CART';

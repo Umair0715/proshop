@@ -1,5 +1,7 @@
 import {
    ADD_CART_ITEM ,
+   ADD_PAYMENT_METHOD,
+   ADD_SHIPPING_INFO,
    REMOVE_CART_ITEM
 } 
 from './../constants/cartConstants';
@@ -20,6 +22,19 @@ export const addToCart = (id , qty ) => async (dispatch , getState ) =>  {
    }catch(err){
       console.log(err , 'from add to cart action');
    }
+}
+
+
+export const addShippingInfo = ( shippingData , navigate ) => async ( dispatch , getState ) =>  {  
+   dispatch({ type : ADD_SHIPPING_INFO , payload :  shippingData });
+   localStorage.setItem('shippingInfo' , JSON.stringify(getState().cart.shippingInfo));
+   navigate('/order/payment');
+}
+
+export const addPaymentMethod = ( paymentMethod , navigate ) => async ( dispatch , getState ) =>  {  
+   dispatch({ type : ADD_PAYMENT_METHOD, payload :  paymentMethod });
+   localStorage.setItem('paymentMethod' , JSON.stringify(getState().cart.paymentMethod));
+   navigate('/order/place');
 }
 
 export const removeCartItem = (id) => async (dispatch , getState)  => {

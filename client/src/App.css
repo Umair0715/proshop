@@ -104,3 +104,169 @@ input::placeholder{
       width: 100%;
    }
 }
+
+/******** input ******/
+input{
+   border: 1px solid rgb(202, 202, 202);
+}
+
+/************ payment Page **********/
+
+.payment__wrapper form > h1 {
+   font-size: 2.2rem;
+   color: #444;
+   margin-bottom: 2rem;
+}
+
+.payment__wrapper form .payment__el{
+   margin-bottom: 1rem;
+   font-size: 1.6rem;
+}
+
+.payment__wrapper form .payment__el label{
+   cursor: pointer;
+   margin-left: 1rem;
+}
+
+@media (max-width: 900px){
+   .payment__wrapper{
+       width: 70%;
+   }
+}
+@media (max-width: 800px){
+   .payment__wrapper{
+       width: 75%;
+   }
+}
+@media (max-width: 700px){
+   .payment__wrapper{
+       width: 80%;
+   }
+}
+
+
+/*********** Order page ***********/
+.order__container{
+   margin-top: 5rem;
+}
+.order__left{
+   padding-right: 3rem;
+}
+.order__right{
+   border: 1px solid rgb(230, 230, 230);
+   height : fit-content;
+}
+.order__right > ul > li:first-child{
+   border-bottom: 1px solid rgb(231, 231, 231);
+   padding: 1rem;
+}
+.order__right > ul > li:not(li:first-child) {
+   display: flex ;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 1px solid rgb(240, 240, 240);
+   padding: 1rem;
+}
+
+/********** order details **********/
+.orderDetails__left{
+   padding-right: 3rem;
+}
+.orderDetails__right{
+   width: 30%;
+}
+
+/************8 table **************/
+
+
+table {
+   border: 1px solid #ccc;
+   /* border-collapse: collapse; */
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   /* table-layout: fixed; */
+   font-size: 1.4rem;
+ }
+
+ 
+ table tr {
+   background-color: #f8f8f8;
+   border: 1px solid #ddd;
+   padding: 1em;
+}
+table th{
+   font-size: 1.6rem;
+}
+table th,
+table td {
+   padding: .625em;
+   text-align: left;
+   /* text-align: center; */
+ }
+ 
+ 
+ table th {
+   font-size: .85em;
+   letter-spacing: .1em;
+   text-transform: uppercase;
+ }
+ 
+ @media screen and (max-width: 600px) {
+   table {
+     border: 0;
+   }
+ 
+   
+   table thead {
+     border: none;
+     clip: rect(0 0 0 0);
+     height: 1px;
+     margin: -1px;
+     overflow: hidden;
+     padding: 0;
+     position: absolute;
+     width: 1px;
+   }
+   
+   table tr {
+     border-bottom: 3px solid #ddd;
+     display: block;
+     margin-bottom: .625em;
+   }
+   
+   table td {
+     border-bottom: 1px solid #ddd;
+     display: block;
+     font-size: .8em;
+     text-align: right;
+   }
+   
+   table td::before {
+     /*
+     * aria-label has no advantage, it won't be read inside a table
+     content: attr(aria-label);
+     */
+     content: attr(data-label);
+     float: left;
+     font-weight: bold;
+     text-transform: uppercase;
+   }
+   
+   table td:last-child {
+     border-bottom: 0;
+   }
+ }
+
+ .userEditBtns > a ,
+ .userEditBtns > button{
+    padding: 1rem ;
+    font-size: 1.2rem;
+    background : white;
+    color : black;
+    cursor: pointer;
+ }
+ .userEditBtns > button{
+    background-color:crimson;
+    color: white;
+ }

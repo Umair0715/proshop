@@ -11,7 +11,7 @@ const generateToken = user => {
 
 
 exports.register = catchAsync(async ( req , res , next ) => {
-   const { name , email , password } = req.body;
+   const { name , email , password , isAdmin} = req.body;
    if(!name || !email || !password){
       return next(new AppError('All fields are required' , 400))
    }
@@ -20,7 +20,8 @@ exports.register = catchAsync(async ( req , res , next ) => {
       return next(new AppError('This Email is already taken.' , 400))
    }
    await User.create({
-      name , email , password 
+      name , email , password , 
+      isAdmin : isAdmin ? isAdmin : false 
    })
    res.status(201).json({
       status : 'success' , 
@@ -48,7 +49,8 @@ exports.login = catchAsync(async ( req , res , next ) => {
       name : user.name ,
       email : user.email ,
       _id : user._id ,
-      token 
+      token ,
+      isAdmin : user.isAdmin
    })
 })
 
@@ -88,3 +90,65 @@ exports.updateProfile = catchAsync(async ( req , res , next ) => {
       token
    })
 });
+
+
+// GET: ALL USERS      =>       /api/user/usersList
+exports.getAllUsers = catchAsync(async ( req , res , next ) => {
+   const users = await User.find();
+   if(!users){
+      return next(new AppError('No user found yet.' , 400))
+   }
+   res.status(200).json({
+      status : 'success' ,
+      users
+   })
+})
+
+
+// DELETE: DELETE USER      =>       /api/user/:id
+exports.deleteUser = catchAsync(async ( req , res , next ) => {
+   const user = await User.findById(req.params.id);
+   if(!user){
+      return next(new AppError('User not found.' , 404))
+   }
+   await user.remove();
+   res.status(200).json({
+      status : 'success' ,
+      message : 'User removed successfully' 
+   })
+});
+
+
+// GET: GET SINGLE USER      =>       /api/user/:id
+exports.getSingleUser = catchAsync(async ( req , res , next ) => {
+   const user = await User.findById(req.params.id);
+   if(!user){
+      return next(new AppError('User not found.', 404))
+   }
+   res.status(200).json({
+      status: 'success' , 
+      user 
+   })
+})
+
+// PUT: UPDATE USER      =>       /api/user/:id
+exports.updateUser = catchAsync(async ( req , res , next ) => {
+   const user = await User.findById(req.params.id);
+   if(!user){
+      return next(new AppError('User not found.', 404))
+   }
+   if (req.body.name ) user.name = req.body.name;
+   if (req.body.email ) user.email = req.body.email;
+   if (req.body.isAdmin){
+      user.isAdmin = true 
+   }else{
+      user.isAdmin = false;
+   }
+   
+   const updatedUser = await user.save();
+   
+   res.status(200).json({
+      status: 'success' , 
+      user : updatedUser 
+   })
+})

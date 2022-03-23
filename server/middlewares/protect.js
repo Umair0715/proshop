@@ -20,3 +20,11 @@ exports.protect = catchAsync(async ( req , res , next ) => {
    req.user = user;
    next();
 })
+
+
+exports.isAdmin = catchAsync(async ( req , res , next ) => {
+   if(req.user && req.user.isAdmin){
+      return next();
+   }
+   return next(new AppError('Your are not allowed to perform this action.', 400))
+})
