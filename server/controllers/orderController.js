@@ -69,11 +69,41 @@ exports.updateOrderToPay = catchAsync(async ( req , res , next ) => {
 
 exports.getMyOrders = catchAsync(async ( req , res , next ) => {
    const orders = await Order.find({ user : req.user._id});
-   if(!orders){
+   if(!orders || orders.length === 0){
       return next(new AppError('No Order found.' , 404))
    }
    res.status(200).json({
       status : 'success' ,
       orders 
+   })
+})
+
+
+// GET :: GET ALL ORDERS      =>       /api/order/ordersList
+exports.getAllOrders = catchAsync(async ( req , res , next ) => {
+   const orders = await Order.find().populate('user' , 'name email _id');
+   if(!orders || orders.length === 0){
+      return next(new AppError('No Order found.' , 404))
+   }
+   res.status(200).json({
+      status : 'success' ,
+      orders 
+   })
+})
+
+// PUT :: MARK DELIVER      =>       /api/order/:id
+exports.markDeliver = catchAsync(async ( req , res , next ) => {
+   const order = await Order.findById(req.params.id);
+   if(!order){
+      return next(new AppError('Order Not found.' , 404))
+   }
+   if(!order.isDelivered){
+      order.isDelivered = true ;
+      order.deliveredAt = Date.now();
+   }
+   const deliveredOrder = await order.save();
+   res.status(200).json({
+      status : 'success' ,
+      order : deliveredOrder
    })
 })

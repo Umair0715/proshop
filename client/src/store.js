@@ -1,10 +1,10 @@
 import { createStore , applyMiddleware , combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { productDetailsReducer, productsListReducer } from './reducers/productReducer';
+import { createProductReducer, createReviewReducer, productDetailsReducer, productsListReducer, updateProductReducer } from './reducers/productReducer';
 import { cartReducer } from './reducers/cartReducer';
 import { getSingleUserReducer, updateUserReducer, userDeleteReducer, userDetailsReducer, userLoginReducer , userRegisterReducer, usersListReducer } from './reducers/userReducer';
-import { createOrderReducer, myOrdersReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducer';
+import { allOrdersReducer, createOrderReducer, myOrdersReducer, orderDeliverReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducer';
 
 const reducers = combineReducers({
    products : productsListReducer ,
@@ -20,7 +20,12 @@ const reducers = combineReducers({
    usersList : usersListReducer ,
    userDelete : userDeleteReducer , 
    singleUser : getSingleUserReducer,
-   updateUser : updateUserReducer
+   updateUser : updateUserReducer ,
+   newProduct : createProductReducer ,
+   updateProduct : updateProductReducer ,
+   allOrders : allOrdersReducer ,
+   orderDeliver : orderDeliverReducer ,
+   review : createReviewReducer
 });
 
 const initialState = {

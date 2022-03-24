@@ -16,7 +16,7 @@ const UsersList = () => {
 
    const deleteHandler = id => {
       if( id === userInfo._id){
-         return alert('You Cant perform this action.')
+         return alert('You Cannot perform this action.')
       }
       dispatch(deleteUser(id));
    }

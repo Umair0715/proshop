@@ -1,6 +1,6 @@
 import ReactStars from 'react-rating-stars-component';
 
-const Rating = ({value  }) => {
+const Rating = ({ value }) => {
    const options = {
       edit : false ,
       color: 'rgba(20,20,20,0.1)',

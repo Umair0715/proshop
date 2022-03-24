@@ -87,6 +87,7 @@ exports.updateProfile = catchAsync(async ( req , res , next ) => {
       name : updatedUser.name ,
       email : updatedUser.email ,
       _id : updatedUser._id ,
+      isAdmin : updatedUser.isAdmin ,
       token
    })
 });
@@ -95,7 +96,7 @@ exports.updateProfile = catchAsync(async ( req , res , next ) => {
 // GET: ALL USERS      =>       /api/user/usersList
 exports.getAllUsers = catchAsync(async ( req , res , next ) => {
    const users = await User.find();
-   if(!users){
+   if(!users || users.length === 0){
       return next(new AppError('No user found yet.' , 400))
    }
    res.status(200).json({

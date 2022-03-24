@@ -10,7 +10,13 @@ import {
    ORDER_PAY_FAIL, 
    MY_ORDERS_REQUEST,
    MY_ORDERS_SUCCESS,
-   MY_ORDERS_FAIL
+   MY_ORDERS_FAIL ,
+   ALL_ORDERS_REQUEST,
+   ALL_ORDERS_SUCCESS,
+   ALL_ORDERS_FAIL ,
+   DELIVER_ORDER_FAIL ,
+   DELIVER_ORDER_REQUEST ,
+   DELIVER_ORDER_SUCCESS ,
 }
 from './../constants/orderConstants';
 import { RESET_CART } from '../constants/cartConstants';
@@ -91,5 +97,41 @@ export const myOrders = () => async (dispatch , getState) => {
       
    }catch(err){
       dispatch({type : MY_ORDERS_FAIL ,  payload : err.response && err.response.data.message ? err.response.data.message : err.message})
+   }
+}
+
+
+// UPDATE ORDER TO PAY
+export const getAllOrders = () => async (dispatch , getState) => {
+   dispatch({ type : ALL_ORDERS_REQUEST});
+   const token = getState().login.userInfo.token;
+   try{
+      const config = {
+         headers : {
+            authorization : `Bearer ${token}`
+         }
+      }
+      const { data : { orders } } = await axios.get(`/api/order/ordersList` , config );
+      dispatch({ type : ALL_ORDERS_SUCCESS , payload : orders })
+      
+   }catch(err){
+      dispatch({type : ALL_ORDERS_FAIL ,  payload : err.response && err.response.data.message ? err.response.data.message : err.message})
+   }
+}
+
+export const markDeliver = id => async (dispatch , getState) => {
+   dispatch({ type : DELIVER_ORDER_REQUEST});
+   const token = getState().login.userInfo.token;
+   try{
+      const config = {
+         headers : {
+            authorization : `Bearer ${token}`
+         }
+      }
+      await axios.put(`/api/order/${id}` , {} , config );
+      dispatch({ type : DELIVER_ORDER_SUCCESS })
+      window.location.reload();
+   }catch(err){
+      dispatch({type : DELIVER_ORDER_FAIL ,  payload : err.response && err.response.data.message ? err.response.data.message : err.message})
    }
 }

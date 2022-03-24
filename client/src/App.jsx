@@ -15,6 +15,10 @@ import PlaceOrder from './pages/PlaceOrder';
 import OrderDetails from './pages/OrderDetails';
 import UsersList from './pages/UsersList';
 import UserUpdate from './pages/UserUpdate';
+import AdminProductList from './pages/AdminProductList';
+import NewProduct from './pages/NewProduct';
+import AdminOrdersList from './pages/AdminOrdersList';
+import AdminOrderDetails from './pages/AdminOrderDetails';
 
 const App = () => {
  
@@ -27,6 +31,7 @@ const App = () => {
             <main className=' w-85 m-auto min-h-100 '>
                   <Routes>
                      <Route path='/' element={<Home />} />
+                     <Route path='/home/:keyword' element={<Home />} />
                      <Route path='/product/:id' element={<SingleProduct />} />
                      <Route path='/cart/:id' element={<Cart />} />
                      <Route path='/cart' element={<Cart />} />
@@ -49,8 +54,16 @@ const App = () => {
                      element={userInfo ? <OrderDetails /> : <Navigate to='/login' />} />
                      <Route path='/admin/usersList'
                      element={userInfo && userInfo.isAdmin ? <UsersList /> : <Navigate to='/' />} />
-                      <Route path='/admin/user/update/:id'
+                     <Route path='/admin/user/update/:id'
                      element={userInfo && userInfo.isAdmin ? <UserUpdate /> : <Navigate to='/' />} />
+                     <Route path='/admin/products'
+                     element={userInfo && userInfo.isAdmin ? <AdminProductList /> : <Navigate to='/' />} />
+                     <Route path='/admin/product/update/:id'
+                     element={userInfo && userInfo.isAdmin ? <NewProduct /> : <Navigate to='/' />} />
+                     <Route path='/admin/orders'
+                     element={userInfo && userInfo.isAdmin ? <AdminOrdersList /> : <Navigate to='/' />} />
+                      <Route path='/admin/order/:id'
+                     element={userInfo && userInfo.isAdmin ? <AdminOrderDetails /> : <Navigate to='/' />} />
                   </Routes>
             </main>
             <Footer />

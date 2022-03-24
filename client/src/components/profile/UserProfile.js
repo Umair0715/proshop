@@ -94,7 +94,7 @@ const UserProfile = () => {
                <h1 className='font-xl font-500 text-dark mb-20'>MY ORDERS</h1>
                {
                   ordersLoading ? <Loader />
-                  : ordersError ? <Alert variant='danger'>{error}</Alert>
+                  : ordersError ? <Alert variant='danger'>{ordersError}</Alert>
                   : orders && 
                   <table>
                         <thead>
@@ -128,7 +128,7 @@ const UserProfile = () => {
                                     </td>
                                     <td data-label="DELIVERED">
                                        {
-                                          order.isDelivered ? <Moment format='DD-MM-YYYY'>{order.deliveredAt}</Moment> : <p style={{color: 'red'}}>Not Deliv..</p>
+                                          order.isDelivered ? <Moment format='DD-MM-YYYY'>{order.deliveredAt}</Moment> : <p style={{color: 'red'}}>Not Delivered</p>
                                        }
                                     </td>
                                     <td data-label="VIEW">

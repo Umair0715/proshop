@@ -78,13 +78,13 @@ export const updateUserProfile = ( updateData, passedToken ) => async (dispatch,
             authorization : `Bearer ${passedToken}`
          }
       }
-      const { data : { status , name , email , _id , token } } = await axios.put('/api/user' , updateData , config)
+      const { data : { status , name , email , _id , token , isAdmin } } = await axios.put('/api/user' , updateData , config)
       if(status === 'success'){
          dispatch({ type : USER_LOGIN_SUCCESS ,  payload : 
-            { name , email , _id , token}
+            { name , email , _id , token , isAdmin}
          })
          localStorage.setItem('userInfo' , JSON.stringify(
-            { name ,email , _id , token}
+            { name ,email , _id , token , isAdmin  }
          ))
          window.location.reload();
       }

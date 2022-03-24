@@ -44,7 +44,20 @@ const productSchema = mongoose.Schema({
       type : String ,
       required : true 
    }
-} ,  { timestamps : true })
+} ,  { 
+   timestamps : true , 
+   toJSON : { virtuals : true } ,
+   toObject : { virtuals : true }
+})
+
+
+
+// VIRTUAL POPULATE 
+productSchema.virtual('reviews' , {
+   ref : 'Review' , 
+   foreignField : 'product' ,
+   localField : '_id'
+})
 
 const Product = mongoose.model("Product" , productSchema);
 module.exports = Product ;

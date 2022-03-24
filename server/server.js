@@ -5,15 +5,18 @@ const app = express();
 const connectDB = require('./utils/db');
 const globalErrorHandler = require('./middlewares/errorHandler');
 const cors = require('cors');
+const path = require('path');
 
 // DATABASE 
 connectDB();
 
 app.use(cors());
 app.use(express.json());
-
+app.use('/uploads' , express.static(path.join(__dirname , '../uploads')));
 // ROUTES
 app.use('/api' , require('./routes/productRoutes'));
+app.use('/api' , require('./routes/uploadRoutes'));
+app.use('/api/review', require('./routes/reviewRoutes'));
 app.use('/api/user' , require('./routes/authRoutes'));
 app.use('/api/order' , require('./routes/orderRoutes'));
 

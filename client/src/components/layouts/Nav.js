@@ -2,6 +2,7 @@ import './Layouts.css';
 import { Link } from 'react-router-dom';
 import { useSelector , useDispatch } from 'react-redux';
 import { logoutUser } from './../../actions/userActions';
+import SearchBox from './SearchBox';
 
 const Nav = () => {
    const dispatch = useDispatch();
@@ -10,11 +11,12 @@ const Nav = () => {
    return (
       <nav className='nav'>
          <div className='w-85 m-auto flex items-center justify-between'>
-            <div className='nav__left'>
+            <div className='nav__left flex items-center'>
                <Link to='/' className='text-white'>
                   <h1 className='font-xl text-white font-600'>PROSHOP</h1>
                </Link>   
-            </div>   
+               <SearchBox />
+            </div> 
             <div className='nav__right flex items-center'>
                <div>
                   <Link className='font-sm' to='/cart'>
@@ -61,6 +63,7 @@ const Nav = () => {
                            Users
                         </Link>
                         <Link to='/admin/products'>Products</Link>
+                        <Link to='/admin/orders'>Orders</Link>
                      </div>
                   </div>
                }

@@ -5,15 +5,17 @@ import { useEffect } from 'react';
 import { getAllProducts } from '../actions/productAction';
 import Loader from './../components/loader/Loader';
 import Alert from './../components/alert/Alert';
+import { useParams } from 'react-router-dom';
 
 
 
 const HomePage = () => {
+   const { keyword } = useParams();
    const dispatch = useDispatch();
    const { loading , error , products } = useSelector(state => state.products);
    useEffect(() => {
-      dispatch(getAllProducts());
-   },[dispatch])
+      dispatch(getAllProducts(keyword));
+   },[dispatch , keyword])
 
    return (
       loading ? <Loader />
