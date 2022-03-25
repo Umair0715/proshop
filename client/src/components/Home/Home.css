@@ -16,3 +16,44 @@
    object-fit: cover;
    border-radius: 5px;
 }
+
+.mySwiper {
+   width: 100%;
+   height: 100%;
+   background: var(--primary);
+   display: flex ; justify-content: center;
+   align-items: center;
+}
+.Pagination{
+   margin-top: 3rem;
+}
+.swiper-slide {
+   text-align: center;
+   font-size: 14px;
+   background:var(--primary);
+   padding: 2rem 0;
+ 
+   /* Center slide text vertically */
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   -webkit-align-items: center;
+   align-items: center;
+   padding-bottom: 4rem;
+ }
+ 
+
+ .swiper-slide img {
+   display: block;
+   width: 350px;
+   height: 350px;
+   border-radius: 50%;
+   /* object-fit: cover; */
+ }

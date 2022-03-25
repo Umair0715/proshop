@@ -33,10 +33,10 @@ const OrderDetailsLeft = ({ order }) => {
          <div className='orderDetails__user font-sm mt-10'>
             <h3 className='font-xl font-500 text-dark'>USER</h3>
             <div className='mt-5'>
-               <p><strong className='font-600'>Name : </strong>{order.user.name}</p>
+               <p><strong className='font-600'>Name : </strong>{order.user ? order.user.name : ''}</p>
             </div>
             <div className='mt-5'>
-               <p><strong className='font-600'>Email : </strong>{order.user.email}</p>
+               <p><strong className='font-600'>Email : </strong>{order.user ? order.user.email : ''}</p>
             </div>
          </div>
          <div className='line my-20'></div>

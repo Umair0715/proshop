@@ -31,7 +31,10 @@ const App = () => {
             <main className=' w-85 m-auto min-h-100 '>
                   <Routes>
                      <Route path='/' element={<Home />} />
-                     <Route path='/home/:keyword' element={<Home />} />
+                     <Route path='/search/:keyword' element={<Home />} />
+                     <Route path='/search/:keyword/page/:pageNumber' element={<Home />} />
+                     <Route path='/page/:pageNumber' element={<Home />} />
+
                      <Route path='/product/:id' element={<SingleProduct />} />
                      <Route path='/cart/:id' element={<Cart />} />
                      <Route path='/cart' element={<Cart />} />
@@ -57,6 +60,8 @@ const App = () => {
                      <Route path='/admin/user/update/:id'
                      element={userInfo && userInfo.isAdmin ? <UserUpdate /> : <Navigate to='/' />} />
                      <Route path='/admin/products'
+                     element={userInfo && userInfo.isAdmin ? <AdminProductList /> : <Navigate to='/' />} />
+                      <Route path='/admin/products/:pageNumber'
                      element={userInfo && userInfo.isAdmin ? <AdminProductList /> : <Navigate to='/' />} />
                      <Route path='/admin/product/update/:id'
                      element={userInfo && userInfo.isAdmin ? <NewProduct /> : <Navigate to='/' />} />

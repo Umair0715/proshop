@@ -53,7 +53,7 @@ const AdminOrderDetails = () => {
                      </li>
                   </ul>
                   {
-                     !order.isDelivered &&
+                     order && !order.isDelivered &&
                      <div onClick={markDeliveredHandler} className='p-10 text-center'>
                         <button className='btn btn-primary'>MARK DELIVER</button>
                      </div>

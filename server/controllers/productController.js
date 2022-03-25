@@ -39,6 +39,8 @@ exports.updateProduct = catchAsync( async ( req , res , next) => {
 
 // GET::ALL PRODUCTS    =>    /api/products
 exports.getAllProducts = catchAsync( async ( req , res , next ) => {
+   const pageSize = 10;
+   const page = Number(req.query.pageNumber) || 1;
 
    const keyword = req.query.keyword ? {
       name : {
@@ -47,14 +49,19 @@ exports.getAllProducts = catchAsync( async ( req , res , next ) => {
       }
    } : {}
 
-   const products = await Product.find({ ...keyword });
+   const docCount = await Product.countDocuments({ ...keyword });
+   const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * ( page - 1 )); 
+   
    if(!products || products.length === 0){
       return next(new AppError('No Product found' , 404));
    }
+   const pages = Math.ceil( docCount / pageSize); //e.g:42/5=4.2=Math.ceil(4.2)=5
    res.status(200).json({
       status : 'success' ,
       results : products.length ,
-      products 
+      products ,
+      page , 
+      pages 
    })
 });
 
@@ -85,5 +92,11 @@ exports.deleteProduct = catchAsync( async (req ,res , next) => {
    })
 })
 
-
+exports.getTopProducts = catchAsync( async ( req , res , next) => {
+   const products = await Product.find().sort({ rating : -1 }).limit(4)
+   res.status(200).json({
+      status : 'success' ,
+      products 
+   })
+})
 

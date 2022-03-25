@@ -2,17 +2,19 @@ import {useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux';
 import Loader from './../components/loader/Loader';
 import Alert from './../components/alert/Alert';
-import { Link , useNavigate} from 'react-router-dom'
+import { Link , useNavigate , useParams } from 'react-router-dom'
 import { createProduct, deleteProduct, getAllProducts } from '../actions/productAction';
+import Paginate from '../components/paginate/Paginate';
 
 const AdminProductList = () => {
+   const { pageNumber } = useParams();
    const dispatch = useDispatch();
    const navigate = useNavigate();
-   const { products , loading , error  } = useSelector(state => state.products);
+   const { products , loading , error , page , pages  } = useSelector(state => state.products);
 
    useEffect(() => {
-      dispatch(getAllProducts());
-   },[ dispatch ])
+      dispatch(getAllProducts('' , pageNumber));
+   },[ dispatch , pageNumber])
 
    const deleteHandler = id => {
      dispatch(deleteProduct(id));
@@ -92,6 +94,7 @@ const AdminProductList = () => {
             </table>
 
       }
+      <Paginate page={page} pages={pages} isAdmin={true} />
    </div>
    )
 }

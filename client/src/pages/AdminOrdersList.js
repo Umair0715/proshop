@@ -47,7 +47,7 @@ const AdminOrdersList = () => {
                            <tr key={order._id}>
                            <td data-label="ID" >{order._id}</td>
                            <td data-label="USER">
-                              {/* {order.user.name} */}
+                              {order.user ? order.user.name : ''}
                            </td>
                            <td data-label="DATE">
                               <Moment format='DD-MM-YYYY'>
